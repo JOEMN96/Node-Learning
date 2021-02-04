@@ -6,3 +6,36 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
+
+footer {
+  padding: 20px;
+  text-align: center;
+  background-color: tomato;
+  color: white;
+  margin-top: 40px;
+}
+
+nav {
+  padding: 20px;
+  text-align: center;
+  background-color: tomato;
+  margin-bottom: 10px;
+}
+
+nav a {
+  padding: 0 10px;
+  text-decoration: none;
+  color: white;
+}
+
+.err {
+  height: calc(100vh - 79px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.err a {
+  text-decoration: none;
+  margin-left: 10px;
+}
