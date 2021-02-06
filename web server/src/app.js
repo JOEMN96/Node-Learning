@@ -2,6 +2,8 @@ const path = require("path");
 const express = require("express");
 const hbs = require("hbs");
 
+const { getGeoCode, getWeatherData } = require("./function");
+
 const app = express();
 
 const publicFolder = path.join(__dirname, "../public/");
@@ -15,12 +17,23 @@ app.use(express.static(publicFolder));
 
 app.get("", (req, res) => {
   res.render("index", {
-    title: "Home",
+    title: "Weather App",
   });
 });
 
 app.get("/weather", (req, res) => {
-  res.render("weather", { weather: "hello", title: "weather" });
+  if (!req.query.location) {
+    return res.send({ error: "Location query required" });
+  }
+
+  let data = getGeoCode(req.query.location, (req, data = {}) => {
+    getWeatherData(data.lattitude, data.longitude, (err, data) => {
+      if (err) {
+        return res.send({ error: "Error from API" });
+      }
+      return res.send(data);
+    });
+  });
 });
 
 app.get("/help", (req, res) => {

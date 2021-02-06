@@ -39,3 +39,18 @@ nav a {
   text-decoration: none;
   margin-left: 10px;
 }
+
+form {
+  padding: 20px;
+}
+
+form input {
+  padding: 4px;
+}
+form button {
+  padding: 4px;
+}
+
+.msg_area {
+  padding: 20px;
+}

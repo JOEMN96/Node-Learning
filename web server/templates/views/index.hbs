@@ -1,7 +1,15 @@
 {{>header}}
 
     <h1>{{title}}</h1>
-    <h2>From file</h2>
+
+    <form  action="">
+        <input type="text" name="" placeholder="location" id="text">
+        <button type="submit">Search</button>
+    </form>
+  <div class="msg_area">
+      <p class="errorMsg"></p>
+      <p class="sucessMsg"> </p>
+  </div>
     {{>footer}}
     <script src="/app.js"></script>
   </body>
