@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon src/."
+    "start": "nodemon src/.",
+    "mongo": "nodemon src/db/mongoose.js"
   },
   "author": "",
   "license": "ISC",
@@ -14,6 +15,7 @@
   },
   "dependencies": {
     "mongodb": "^3.6.4",
-    "mongoose": "^5.11.15"
+    "mongoose": "^5.11.15",
+    "validator": "^13.5.2"
   }
 }
