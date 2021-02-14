@@ -19,8 +19,8 @@ app.post('/user',(req,res)=>{
   user.save()
   .then(()=>  res.status(201).send(user))
   .catch(err =>  {
-    res.status(400)
-    res.send(err)}
+    res.staus(400)
+    res.sendt(err)}
     )
 })
 
@@ -43,6 +43,7 @@ app.get('/users',(req,res)=>{
     .catch(err => res.status(500).send(err)) 
 })
 
+// GET Unique user
 app.get('/users/:id',(req,res)=>{
     let _id = req.params.id;  
     User.findById(_id).then((user) => {
@@ -56,6 +57,24 @@ app.get('/users/:id',(req,res)=>{
     })
 })
 
-app.listen(port, () => {
+// GET All Tasks
+app.get('/tasks',(req,res) =>{
+  Task.find({})
+    .then(data => res.send(data))
+    .catch(err => res.status(500).send(err))
+})
+
+// GET Specific Task
+
+app.get('/task/:id',(req,res) => {
+  let id = req.params.id;
+  Task.findById(id)
+    .then(data => res.send(data))
+    .catch((_) => res.status(403).send("Unable to Find The Task"))
+})
+
+
+
+app.listen(port, () => { 
   console.log(chalk.bgBlueBright(`Example app listening at http://localhost:${port}`))
 })
