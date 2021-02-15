@@ -65,7 +65,7 @@ app.patch('/users/:id',async (req,res) => {
   let canUpdate = needsUpadate.every(update => validUpdates.includes(update))
 
   if(!canUpdate) {
-    return res.status(404).send('unable to find Key')
+    return res.status(404).send('Proper Updation field Required')
   }
   
     try {
@@ -121,7 +121,30 @@ app.get('/task/:id',async (req,res) => {
   }
 })
 
+// Update Single Task 
 
+app.patch('/tasks/:id',async (req,res) => {
+  let id = req.params.id;
+  let updatableFields = ["completed",'desc']
+
+  let wantToUpdate = Object.keys(req.body);
+  let canUpdate = wantToUpdate.every(feild => updatableFields.includes(feild) )
+
+  if(!canUpdate) {
+    return res.status(404).send("Unable to find proper value")
+  }
+
+  try {
+      let upadtedTask = await Task.findByIdAndUpdate(id,req.body,{new:true,runValidators:true});
+      if(!upadtedTask) {
+        res.status(404).send("help")
+      }
+      res.send(upadtedTask)
+  } catch (error) {
+    res.status(400).send(error)
+  }
+
+})
 
 app.listen(port, () => { 
   console.log(chalk.bgBlueBright(`Example app listening at http://localhost:${port}`))
