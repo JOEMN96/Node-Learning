@@ -10,6 +10,7 @@ const userSchema = new Schema({
   },
   email: {
     type: String,
+    unique: true,
     required: true,
     lowercase: true,
     validate(val) {
@@ -50,6 +51,21 @@ const userSchema = new Schema({
   },
 });
 
+userSchema.statics.findByCredentials = async (email, pass) => {
+  const user = User.findOne({ email });
+  if (!user) {
+    throw new Error(`unable To find User with ${email}`);
+  }
+
+  const isMatch = await bcrypt.compare(pass, user.password);
+  if (!isMatch) {
+    throw new Error("Password not Correct");
+  }
+
+  return user;
+};
+
+// Hash password
 userSchema.pre("save", async function (next) {
   if (this.isModified("password")) {
     this.password = await bcrypt.hash(this.password, 8);
