@@ -18,6 +18,24 @@ route.post("/user", async (req, res) => {
   }
 });
 
+//  Login a User
+
+route.post("/users/login", async (req, res) => {
+  try {
+    const user = await User.findByCredentials(
+      req.body.email,
+      req.body.password
+    );
+
+    let token = await user.generateJwt();
+
+    res.send({ user, token });
+  } catch (e) {
+    console.log(e);
+    res.status(400).send(e);
+  }
+});
+
 // GET users
 
 route.get("/users", async (req, res) => {
@@ -82,20 +100,6 @@ route.delete("/users/:id", async (req, res) => {
     res.send(deletedUser);
   } catch (_) {
     res.status(400).send("bad Req");
-  }
-});
-
-//  Login a User
-
-route.post("/users/login", async (req, res) => {
-  try {
-    const user = await Users.findByCredentials(
-      req.body.email,
-      req.body.password
-    );
-    res.send(user);
-  } catch (e) {
-    res.status(400).send("login failed");
   }
 });
 

@@ -2,6 +2,8 @@ const { Schema } = require("mongoose");
 const validator = require("validator");
 const Mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+
 const userSchema = new Schema({
   name: {
     type: String,
@@ -49,14 +51,33 @@ const userSchema = new Schema({
       }
     },
   },
+  tokens: [
+    {
+      token: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
 });
 
+// Jwt
+
+userSchema.methods.generateJwt = async function () {
+  const user = this;
+  const token = jwt.sign({ _id: user._id.toString() }, "testJwtPP");
+  user.tokens = [...user.tokens, { token }];
+  console.log(user);
+  await user.save();
+  return token;
+};
+
+// Find user && Login user
 userSchema.statics.findByCredentials = async (email, pass) => {
-  const user = User.findOne({ email });
+  const user = await User.findOne({ email });
   if (!user) {
     throw new Error(`unable To find User with ${email}`);
   }
-
   const isMatch = await bcrypt.compare(pass, user.password);
   if (!isMatch) {
     throw new Error("Password not Correct");
