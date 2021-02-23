@@ -20,3 +20,48 @@ nav a {
   color: black;
   font-weight: 600;
 }
+
+nav a:hover {
+  color: #ddd;
+  transition: all 0.2s ease;
+}
+
+footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 60px;
+  padding: 10px;
+  background-color: #ddd;
+}
+
+.createBlog {
+  display: grid;
+  place-items: center;
+  margin: 30px;
+}
+
+.createBlog form > * {
+  display: block;
+}
+
+.createBlog input {
+  padding: 5px;
+  margin: 15px 0px;
+  width: 233px;
+  border: 1px solid #ddd;
+}
+.createBlog textarea {
+  border: 1px solid #ddd;
+  padding: 4px;
+}
+
+.createBlog button {
+  padding: 4px 6px;
+  margin: 10px 0;
+  background-color: black;
+  color: white;
+  font-weight: 600;
+  border: 1px solid #000;
+  cursor: pointer;
+}
