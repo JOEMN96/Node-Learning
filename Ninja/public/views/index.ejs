@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog | <%= title %></title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/blogs">Blogs</a>
+        <a href="/createblog">Create Blog</a>
+      </nav>
+    </header>
+
+    <% if(blogs.length > 0 ) { %> <% blogs.forEach(blog =>{ %>
+    <h3><%= blog.title %></h3>
+    <p><%= blog.content%></p>
+    <% }) %> <%} %>
+  </body>
+</html>
