@@ -7,7 +7,7 @@
     <%- include("./templates/nav") %>
     <!-- Content -->
     <section class="createBlog">
-      <form action="">
+      <form action="/createNewBlog" method="POST">
         <input type="text" placeholder="Title" name="title" id="title" />
         <input
           type="text"
@@ -24,6 +24,7 @@
         ></textarea>
         <button type="submit">Submit</button>
       </form>
+      <p class="formAck"></p>
     </section>
     <%- include('./templates/footer') %>
   </body>

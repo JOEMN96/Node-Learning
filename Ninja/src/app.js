@@ -10,7 +10,12 @@ const app = express();
 // serving static assets
 let publicPath = path.join(__dirname, "../public");
 app.use(express.static(publicPath));
-
+app.use(express.urlencoded({ extended: true }));
+app.use(
+  express.json({
+    type: ["application/json", "text/plain"],
+  })
+);
 app.set("view engine", "ejs");
 app.set("views", "public/views");
 
@@ -50,11 +55,9 @@ app.get("/newBlog", (req, res) => {
 app.get("/allBLogs", (req, res) => {
   Blog.find({})
     .then((data) => {
-      console.log(data);
       res.send(data);
     })
     .catch((err) => {
-      console.log(err);
       res.status(404).send(err);
     });
 });
@@ -77,13 +80,44 @@ app.get("/", (req, res) => {
   Blog.find({})
     .sort({ createdAt: -1 })
     .then((data) => {
-      console.log(data);
       res.render("index", { title: "Home", blogs: data });
     })
     .catch((err) => {
-      console.log(err);
       res.status(404).send(err);
     });
+});
+
+// get single Blog
+
+app.get("/blog/:id", (req, res) => {
+  const id = req.params.id;
+  Blog.findById(id)
+    .then((resp) => {
+      res.render("singlePage", { title: "Blog", blog: resp });
+    })
+    .catch((err) => {
+      res.status(404).send(err);
+    });
+});
+
+// delete a blog
+
+app.delete("/blog/:id", (req, res) => {
+  const id = req.params.id;
+  Blog.findByIdAndDelete(id)
+    .then(() => {
+      res.json({ redirect: "/blogs" });
+    })
+    .catch((err) => {
+      res.status(404).send(err);
+    });
+});
+
+app.post("/createNewBlog", (req, res) => {
+  const blogInstance = new Blog(req.body);
+  blogInstance.save().then((_) => {
+    res.redirect("/").send();
+  });
 });
 
 app.get("/about", (req, res) => {

@@ -1,0 +1,94 @@
+{
+	"info": {
+		"_postman_id": "f746b4c4-a35f-4c4e-ad4e-49dd4c779ffa",
+		"name": "Blog App",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "NEW Blog",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/newBlog",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"newBlog"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All blogs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/allBLogs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"allBLogs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Single BLlg",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/singleBlog",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"singleBlog"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Blog",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"test\":\"hrllo\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/createblog",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"createblog"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -8,15 +8,18 @@
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
-    <main>
+    <main class="index">
       <%- include("./templates/nav") %>
       <h2>Blogs</h2>
-      <% if(blogs.length > 0 ) { %> <% blogs.forEach(blog =>{ %>
-      <div class="blogCard">
-        <h3><%= blog.title %></h3>
-        <p><%= blog.content%></p>
+      <div class="blogCardParent">
+        <% if(blogs.length > 0 ) { %> <% blogs.forEach(blog =>{ %>
+
+        <a href="/blog/<%= blog.id %>" class="blogCard">
+          <h3><%= blog.title %></h3>
+          <p><%= blog.content%></p>
+        </a>
+        <% }) %> <%} %>
       </div>
-      <% }) %> <%} %>
     </main>
     <%- include('./templates/footer') %>
   </body>

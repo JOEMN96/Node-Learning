@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./templates/head')%>
+  <body>
+    <%- include('./templates/nav')%>
+    <main>
+      <article>
+        <h2><%= blog.title%></h2>
+        <p><%= blog.content%></p>
+        <div>
+          <a class="delete" data-doc="<%= blog.id%>">Delete</a>
+        </div>
+      </article>
+    </main>
+    <%- include('./templates/footer') %>
+  </body>
+</html>

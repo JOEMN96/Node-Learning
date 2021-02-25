@@ -65,3 +65,47 @@ footer {
   border: 1px solid #000;
   cursor: pointer;
 }
+
+.index h2 {
+  margin: 20px;
+}
+
+.blogCardParent {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin: 15px;
+}
+
+.blogCard {
+  padding: 10px;
+  flex-basis: 25%;
+}
+a {
+  color: #000;
+  text-decoration: none;
+}
+
+article {
+  margin-top: 20px;
+  padding: 10px;
+}
+
+article p {
+  padding: 20px;
+}
+
+article div {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.delete {
+  padding: 4px 7px;
+  background-color: crimson;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 2px;
+}
